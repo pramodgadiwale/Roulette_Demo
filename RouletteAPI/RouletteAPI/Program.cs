@@ -1,3 +1,4 @@
+using ExceptionHandling.CustomMiddlewares;
 using Microsoft.Extensions.DependencyInjection;
 using RouletteAPI.Database;
 using RouletteAPI.Repository;
@@ -10,9 +11,9 @@ builder.Services.AddControllers();
 //builder.Services.Configure<FormatSettings>(builder.Configuration.GetSection("Formatting"));
 //builder.Services.AddSingleton(new DatabaseConfig { Name = Configuration["DatabaseName"] });
 
-builder.Services.AddScoped<IRouletteDB, RouletteDB>();
-builder.Services.AddScoped<IRouletteData, RouletteData>();
-builder.Services.AddScoped<ISpinData, SpinData> ();
+builder.Services.AddTransient<IRouletteDB, RouletteDB>();
+builder.Services.AddTransient<IRouletteData, RouletteData>();
+builder.Services.AddTransient<ISpinData, SpinData> ();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -31,7 +32,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.MapControllers();
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.Services.GetService<IRouletteDB>().Setup();
 
 app.Run();

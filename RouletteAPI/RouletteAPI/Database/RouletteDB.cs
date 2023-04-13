@@ -24,11 +24,11 @@ namespace RouletteAPI.Database
                 return;
 
             connection.Execute("Create Table RouletteDetails (" +
-                "BetOn VARCHAR(100) NOT NULL," +
+                "BetOn int NOT NULL," +
                 "Token int NOT NULL," +
-                "Color VARCHAR(10) NOT NULL," +
-                "EvenOdd VARCHAR(10) NOT NULL," +
-                "GroupBetID VARCHAR(100) NOT NULL," +
+                "Color VARCHAR(10) NULL," +
+                "EvenOdd VARCHAR(10) NULL," +
+                "GroupBetID VARCHAR(100) NULL," +
                 "SessionID VARCHAR(100) NOT NULL," +
                 "User VARCHAR(100) NOT NULL," +
                 "AppName VARCHAR(100) NOT NULL," +

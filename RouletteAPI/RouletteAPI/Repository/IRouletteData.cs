@@ -8,6 +8,8 @@ namespace RouletteAPI.Repository
     public interface IRouletteData
     {
         Task<IEnumerable<RouletteModel>> Get();
-        Task Insert(RouletteModel rouletteModel);        
+        Task<IEnumerable<RouletteModel>> Get(string sessionId);
+        Task Insert(RouletteModel rouletteModel);
+        Task<int> Delete(RouletteModel rouletteModel);
     }
 }

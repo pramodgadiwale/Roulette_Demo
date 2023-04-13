@@ -8,6 +8,7 @@ namespace RouletteAPI.Repository
     public interface ISpinData
     {
         Task<IEnumerable<SpinResultModel>> Get();
+        Task<SpinResultModel> Get(string sessionID);
         Task Insert(SpinResultModel rouletteModel);        
     }
 }

@@ -17,6 +17,11 @@ namespace RouletteAPI.Repository
 
             return await connection.QueryAsync<SpinResultModel>("SELECT * FROM SpinDetails;");
         }
+        public async Task<SpinResultModel> Get(string sessionID)
+        {
+            using var connection = new SqliteConnection(_configuration.GetSection("DatabaseName").Value);
+            return await connection.QueryFirstOrDefaultAsync<SpinResultModel>($"SELECT * FROM SpinDetails where sessionID={sessionID};");
+        }
         public async Task Insert(SpinResultModel SpinModel)
         {
             using var connection = new SqliteConnection(_configuration.GetSection("DatabaseName").Value);
